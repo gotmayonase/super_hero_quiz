@@ -1,0 +1,33 @@
+<div class="container">
+  <h1>Enter your information</h1>
+  <% if @user.errors.present? %>
+    <% @user.errors.full_messages.each do |error|  %>
+      <%= error %>
+    <% end %>
+  <% end %>
+  <%= form_with model: @user, local: true do |f| %>
+
+    <div class="form-group">
+      <%= f.label :first_name, 'First Name' %>
+      <%= f.text_field :first_name, class: 'form-control', placeholder: 'First Name' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :last_name, 'Last Name' %>
+      <%= f.text_field :last_name, class: 'form-control', placeholder: 'Last Name' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :email, 'Email' %>
+      <%= f.text_field :email, class: 'form-control', placeholder: 'Email' %>
+    </div>
+
+    <div class="form-group form-check">
+      <%= f.check_box(:subscription, checked: true, class: 'form-check-input') %>
+      <%= f.label :subscription, 'Sign Me Up!', class: 'form-check-label' %>
+    </div>
+
+    <%= f.submit 'Submit', class: 'btn btn-info' %>
+
+  <% end %>
+</div>

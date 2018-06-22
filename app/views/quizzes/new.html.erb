@@ -1,0 +1,19 @@
+<div class="container quiz-form">
+  <h1>Questions</h1>
+  <div class="row justify-content-center">
+    <%= form_tag quizzes_path do %>
+      <% @quiz.each.with_index do |question, i| %>
+        <div class="form-group">
+          <label><%= question.inquiry %></label>
+          <% %i{answer_1 answer_2 answer_3 answer_4}.each do |field| %>
+            <div class="form-check">
+              <%= radio_button_tag "answer-#{i}", question.send(field), class: 'form-check-input' %>
+              <%= label_tag "answer-#{i}", question.send(field), class: 'form-check-label' %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+      <%= submit_tag "Submit", class: 'btn btn-info' %>
+    <% end %>
+  </div>
+</div>
